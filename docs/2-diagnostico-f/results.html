@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seu Diagnóstico Financeiro - Resultados</title>
+    <meta name="description" content="Confira os resultados do seu diagnóstico financeiro e o plano de ação personalizado.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="results-container">
+        <header class="results-header">
+            <h1 class="results-title">📊 Resultados do seu Diagnóstico</h1>
+            <p class="results-subtitle">Confira abaixo as observações e planos de ação baseados em suas respostas</p>
+        </header>
+        
+        <main class="results-content">
+            <section class="results-section">
+                <h2 class="section-title">🔍 Pontos de Atenção</h2>
+                <div class="section-description">
+                    Identificamos algumas áreas que merecem sua atenção:
+                </div>
+                <div id="observations-container" class="items-container"></div>
+            </section>
+            
+            <section class="results-section">
+                <h2 class="section-title">🎯 Planos de Ação</h2>
+                <div class="section-description">
+                    Recomendações específicas para melhorar sua gestão financeira:
+                </div>
+                <div id="plans-container" class="items-container"></div>
+            </section>
+            
+            <div class="cta-section cta-highlight">
+                <div class="cta-icon">🚀</div>
+                <h3 class="cta-title">Quer acelerar estes resultados?</h3>
+                <p class="cta-description">
+                    Nossos especialistas podem ajudar você a implementar estas mudanças e maximizar os resultados do seu negócio.
+                </p>
+                <a class="cta-button cta-whatsapp" href="https://wa.me/message/TDAN6VTQUTZLE1" target="_blank" rel="noopener noreferrer">
+                    <span>Falar com um Especialista</span>
+                    <span class="button-arrow">→</span>
+                </a>
+            </div>
+            
+            <div class="results-actions">
+                <button class="btn-secondary btn-red" onclick="restartQuiz()">
+                    ⭯ Refazer Diagnóstico
+                </button>
+                <button class="btn-primary btn-blue-download" onclick="downloadResults()">
+                    🡇 Baixar Resultados
+                </button>
+            </div>
+        </main>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
