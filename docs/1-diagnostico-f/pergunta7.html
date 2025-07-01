@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pergunta 7 - Diagnóstico Empresarial</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="quiz-card">
+            <div class="question-header">
+                <span>Pergunta 7 de 9</span><span style="margin-left: 8px; color: #fff;">Pontuação: <span id="score">0</span></span>
+            </div>
+            
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 77.77%"></div>
+            </div>
+
+            <h2 class="question-title">🎯 Como está o seu planejamento estratégico e definição de metas?</h2>
+
+            <div class="options">
+                <div class="option" onclick="selectOption(0)">
+                    <span class="option-radio"></span>
+                    <span class="option-text">Planejamento detalhado com metas claras e acompanhamento regular 📋</span>
+                </div>
+                <div class="option" onclick="selectOption(1)">
+                    <span class="option-radio"></span>
+                    <span class="option-text">Tenho algumas metas definidas e planos básicos 📝</span>
+                </div>
+                <div class="option" onclick="selectOption(2)">
+                    <span class="option-radio"></span>
+                    <span class="option-text">Planejamento informal, sem muita estrutura 🤔</span>
+                </div>
+                <div class="option" onclick="selectOption(3)">
+                    <span class="option-radio"></span>
+                    <span class="option-text">Não tenho planejamento estruturado ❌</span>
+                </div>
+            </div>
+
+            <div class="navigation">
+                <button class="btn-restart" onclick="window.location.href='index.html'">⭯ Reiniciar</button>
+                <button class="btn-next" id="nextBtn" disabled onclick="nextQuestion()">Próxima →</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="quiz.js"></script>
+</body>
+</html>

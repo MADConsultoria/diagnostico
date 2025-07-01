@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pergunta 5 - Diagnóstico Empresarial</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="quiz-card">
+            <div class="question-header">
+                <span>Pergunta 5 de 9</span><span style="margin-left: 8px; color: #fff;">Pontuação: <span id="score">0</span></span>
+            </div>
+            
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 55.55%"></div>
+            </div>
+
+            <h2 class="question-title">🛒 Como você avalia seu processo de relacionamento com clientes?</h2>
+
+            <div class="options">
+                <div class="option" onclick="selectOption(0)">
+                    <span class="option-radio"></span>
+                    <span class="option-text">Excelente relacionamento, clientes muito satisfeitos e fiéis 😍</span>
+                </div>
+                <div class="option" onclick="selectOption(1)">
+                    <span class="option-radio"></span>
+                    <span class="option-text">Bom relacionamento, maioria dos clientes satisfeitos 😊</span>
+                </div>
+                <div class="option" onclick="selectOption(2)">
+                    <span class="option-radio"></span>
+                    <span class="option-text">Relacionamento básico, focado apenas na venda 🤝</span>
+                </div>
+                <div class="option" onclick="selectOption(3)">
+                    <span class="option-radio"></span>
+                    <span class="option-text">Relacionamento fraco, muitas reclamações 😓</span>
+                </div>
+            </div>
+
+            <div class="navigation">
+                <button class="btn-restart" onclick="window.location.href='index.html'">⭯ Reiniciar</button>
+                <button class="btn-next" id="nextBtn" disabled onclick="nextQuestion()">Próxima →</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="quiz.js"></script>
+</body>
+</html>
