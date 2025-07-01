@@ -260,7 +260,7 @@ function animateWelcomeElements() {
 }
 
 function startQuiz() {
-    window.location.href = 'quiz.html';
+    window.location.href = 'quiz';
 }
 
 // Quiz page functions
@@ -399,7 +399,7 @@ function updateProgress() {
 
 function finishQuiz() {
     localStorage.setItem(STORAGE_KEYS.COMPLETED, 'true');
-    window.location.href = 'lead.html';
+    window.location.href = 'lead';
 }
 
 // Results page functions
@@ -408,7 +408,7 @@ function initResultsPage() {
     
     if (!savedAnswers) {
         // Redirect to quiz if no answers found
-        window.location.href = 'index.html';
+        window.location.href = 'index';
         return;
     }
     
@@ -481,7 +481,7 @@ function createResultItem(text, number, type) {
 // Universal functions
 function restartQuiz() {
     clearQuizData();
-    window.location.href = 'index.html';
+    window.location.href = 'index';
 }
 
 function clearQuizData() {
