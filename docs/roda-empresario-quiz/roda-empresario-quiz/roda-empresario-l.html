@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MAD Consultoria — Dados para o Diagnóstico</title>
+  <link rel="stylesheet" href="./assets/css/main.css">
+  <link rel="stylesheet" href="./assets/css/lead-capture.css">
+</head>
+<body>
+  <header>
+    <img id="mad-logo" src="" alt="MAD Consultoria (adicione o seu logo)" />
+    <div>
+      <h1 class="brand">MAD Consultoria</h1>
+      <div class="id-line">Roda do Empresário — Diagnóstico</div>
+    </div>
+  </header>
+
+  <main>
+    <div class="card">
+      <div class="progress-indicator">
+        <div class="progress-step completed"></div>
+        <div class="progress-step active"></div>
+        <div class="progress-step"></div>
+      </div>
+      
+      <h2 class="title">Quase lá! Precisamos dos seus dados</h2>
+      <p class="description">Para liberar o diagnóstico completo da Roda do Empresário e enviar seu resultado personalizado, precisamos de algumas informações básicas.</p>
+
+      <form id="leadForm" novalidate data-api-endpoint="https://api.homio.com.br/webhook/v1/contacts" data-api-token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2NhdGlvbl9pZCI6IllqcjhhZkw1WEJVNzY5cWZqWHVEIiwidmVyc2lvbiI6MSwiaWF0IjoxNzUwOTYyMDI5OTc4LCJzdWIiOiJvS0Qzd1lYbnZ0MkxKVnZ2dEw5VCJ9.spk_hlChpGpfO5awqv8dWFE-LaKSDVaXaSpF2mXCkeg">
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label" for="name">Nome Completo *</label>
+            <input type="text" id="name" class="form-input" required placeholder="Seu nome completo">
+            <div class="error-message" id="nameError"></div>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="phone">Telefone/WhatsApp *</label>
+            <input type="tel" id="phone" class="form-input" required placeholder="(11) 99999-9999">
+            <div class="error-message" id="phoneError"></div>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="email">E-mail *</label>
+            <input type="email" id="email" class="form-input" required placeholder="seu@email.com">
+            <div class="error-message" id="emailError"></div>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="company">Empresa (opcional)</label>
+            <input type="text" id="company" class="form-input" placeholder="Nome da sua empresa">
+            <div class="error-message" id="companyError"></div>
+          </div>
+
+          <div class="checkbox-group">
+            <input type="checkbox" id="consent" required>
+            <label for="consent">
+              Aceito receber comunicações da MAD Consultoria e entendo que meus dados serão utilizados para envio do diagnóstico e contato sobre nossos serviços.
+            </label>
+          </div>
+        </div>
+
+        <div class="lead-actions">
+          <button type="submit" class="primary" id="submitBtn">
+            Começar o Quiz
+          </button>
+        </div>
+        
+        <div class="muted">
+          Seus dados são armazenados com segurança e você pode se descadastrar a qualquer momento.
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <script src="./assets/js/lead-capture.js"></script>
+  <script>
+    // Opcional: defina seu logo
+    document.addEventListener('DOMContentLoaded', () => {
+      // document.getElementById('mad-logo').src = './assets/images/logo.png';
+    });
+  </script>
+</body>
+</html>
