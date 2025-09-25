@@ -8,8 +8,14 @@ class LeadCapture {
     this.form = document.getElementById('leadForm');
     this.submitBtn = document.getElementById('submitBtn');
     const ds = this.form ? this.form.dataset : {};
+    // Homio CRM (desativado; veja função comentada abaixo)
     this.apiEndpoint = (ds && ds.apiEndpoint) ? ds.apiEndpoint : 'https://api.exemplo.com/leads';
     this.apiToken = (ds && ds.apiToken) ? ds.apiToken : '';
+    // Supabase
+    this.supabaseUrl = (ds && ds.supabaseUrl) ? ds.supabaseUrl : '';
+    this.supabaseKey = (ds && ds.supabaseKey) ? ds.supabaseKey : '';
+    this.supabaseTable = (ds && ds.supabaseTable) ? ds.supabaseTable : 'leads';
+    this.supabase = null;
     this.isSubmitting = false;
     
     this.init();
@@ -20,7 +26,55 @@ class LeadCapture {
     this.setupValidation();
     this.setupFormSubmission();
     this.loadSavedData();
+    this.setupSupabase();
     this.setupTestHook();
+  }
+
+  setupSupabase() {
+    try {
+      if (this.supabaseUrl && this.supabaseKey && window.supabase) {
+        this.supabase = window.supabase.createClient(this.supabaseUrl, this.supabaseKey);
+        console.log('[LeadCapture] Supabase inicializado');
+      } else {
+        console.log('[LeadCapture] Supabase não configurado (URL/Key ausentes ou CDN não carregou)');
+      }
+    } catch (e) {
+      console.warn('Erro ao inicializar Supabase:', e);
+    }
+  }
+
+  async insertSupabase(data) {
+    if (!this.supabase) {
+      console.warn('Supabase não inicializado, pulando insert');
+      return false;
+    }
+
+    try {
+      // Mapear para as colunas do seu schema: id (auto), created_at, name, whatsapp, Empresa, email, tag
+      const payload = {
+        created_at: new Date().toISOString(),
+        name: data.name,
+        whatsapp: data.phone,
+        Empresa: data.company || null,
+        email: data.email,
+        tag: 'roda-da-vida'
+      };
+
+      const { data: result, error } = await this.supabase
+        .from(this.supabaseTable)
+        .insert(payload)
+        .select();
+
+      if (error) {
+        console.error('Erro ao inserir no Supabase:', error);
+        return false;
+      }
+      console.log('Supabase insert OK:', result);
+      return true;
+    } catch (e) {
+      console.error('Exceção no insert Supabase:', e);
+      return false;
+    }
   }
 
   // Máscara de telefone
@@ -105,17 +159,20 @@ class LeadCapture {
     this.setLoadingState(true);
 
     try {
-      // Enviar dados para API
-      await this.sendToAPI(formData);
-      
-      // Salvar localmente
-      this.saveToLocalStorage(formData);
-      
-      // Simular delay para feedback visual
-      await this.delay(1000);
-      
-      // Redirecionar para o quiz
-      window.location.href = 'index.html';
+      // Apenas Supabase (CRM desativado temporariamente)
+      console.log('📤 Enviando dados para Supabase...');
+      const supaOk = await this.insertSupabase(formData);
+
+      if (supaOk) {
+        console.log('✅ Dados enviados ao Supabase com sucesso!');
+        this.saveToLocalStorage(formData);
+        await this.delay(600);
+        window.location.href = 'index.html';
+      } else {
+        console.log('❌ Falha ao enviar dados ao Supabase');
+        this.showError('Erro ao enviar dados. Tente novamente.');
+        this.setLoadingState(false);
+      }
       
     } catch (error) {
       console.error('Erro ao processar dados:', error);
@@ -197,6 +254,8 @@ class LeadCapture {
     }
   }
 
+  /*
+  // === HOMIO CRM DESATIVADO (comente/descomente para reativar) ===
   async sendToAPI(data) {
     const payload = {
       contact: {
@@ -223,37 +282,29 @@ class LeadCapture {
       headers['Authorization'] = `Bearer ${this.apiToken}`;
     }
 
-    console.groupCollapsed('[LeadCapture] Envio para API');
-    console.log('Endpoint:', this.apiEndpoint);
-    console.log('Headers:', headers);
-    console.log('Payload:', payload);
-
     try {
       const response = await fetch(this.apiEndpoint, {
         method: 'POST',
         headers,
         body: JSON.stringify(payload)
       });
-
-      const text = await response.text();
-      console.log('Status:', response.status, response.statusText);
-      console.log('Raw response:', text);
-
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}: ${text}`);
-      }
-
-      let result;
-      try { result = JSON.parse(text); } catch (_) { result = text; }
-      console.log('Parsed result:', result);
-      console.groupEnd();
-      
+      if (!response.ok) return false;
+      return true;
     } catch (error) {
-      console.groupEnd();
-      console.warn('Falha ao enviar para API, salvando localmente:', error);
-      // Não interrompe o fluxo se a API falhar
+      return false;
     }
   }
+
+  async testConnectivity() {
+    try {
+      const response = await fetch(this.apiEndpoint, { method: 'OPTIONS' });
+      return response.status < 500;
+    } catch (error) {
+      return false;
+    }
+  }
+  // === FIM HOMIO CRM ===
+  */
 
   saveToLocalStorage(data) {
     try {
@@ -299,6 +350,26 @@ class LeadCapture {
 
   delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  async testConnectivity() {
+    try {
+      console.log('🌐 Testando conectividade com:', this.apiEndpoint);
+      const response = await fetch(this.apiEndpoint, {
+        method: 'OPTIONS', // Teste de CORS
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      });
+      
+      console.log('📡 Resposta do teste:', response.status, response.statusText);
+      return response.status < 500; // Qualquer coisa abaixo de 500 é "conectável"
+      
+    } catch (error) {
+      console.error('❌ Erro de conectividade:', error);
+      return false;
+    }
   }
 
   setupTestHook() {

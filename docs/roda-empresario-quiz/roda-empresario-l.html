@@ -27,7 +27,7 @@
       <h2 class="title">Quase lá! Precisamos dos seus dados</h2>
       <p class="description">Para liberar o diagnóstico completo da Roda do Empresário e enviar seu resultado personalizado, precisamos de algumas informações básicas.</p>
 
-      <form id="leadForm" novalidate data-api-endpoint="https://api.homio.com.br/webhook/v1/contacts" data-api-token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2NhdGlvbl9pZCI6IllqcjhhZkw1WEJVNzY5cWZqWHVEIiwidmVyc2lvbiI6MSwiaWF0IjoxNzUwOTYyMDI5OTc4LCJzdWIiOiJvS0Qzd1lYbnZ0MkxKVnZ2dEw5VCJ9.spk_hlChpGpfO5awqv8dWFE-LaKSDVaXaSpF2mXCkeg">
+      <form id="leadForm" novalidate data-api-endpoint="https://api.homio.com.br/webhook/v1/contacts" data-api-token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2NhdGlvbl9pZCI6IllqcjhhZkw1WEJVNzY5cWZqWHVEIiwidmVyc2lvbiI6MSwiaWF0IjoxNzUwOTYyMDI5OTc4LCJzdWIiOiJvS0Qzd1lYbnZ0MkxKVnZ2dEw5VCJ9.spk_hlChpGpfO5awqv8dWFE-LaKSDVaXaSpF2mXCkeg" data-supabase-url="https://pqbgafxosfdiyybvzeuy.supabase.co" data-supabase-key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBxYmdhZnhvc2ZkaXl5YnZ6ZXV5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg4MTUyNDksImV4cCI6MjA3NDM5MTI0OX0.v39FgzJ5aD5UK0pvOtceT32xBrXtvem8_88FXY-sZYo" data-supabase-table="roda-empresario">
         <div class="form-grid">
           <div class="form-group">
             <label class="form-label" for="name">Nome Completo *</label>
@@ -74,11 +74,18 @@
     </div>
   </main>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="./assets/js/lead-capture.js"></script>
   <script>
-    // Opcional: defina seu logo
     document.addEventListener('DOMContentLoaded', () => {
-      // document.getElementById('mad-logo').src = './assets/images/logo.png';
+      const form = document.getElementById('leadForm');
+      if (form) {
+        console.log('Data attributes:', {
+          endpoint: form.dataset.apiEndpoint,
+          supabaseUrl: form.dataset.supabaseUrl,
+          table: form.dataset.supabaseTable
+        });
+      }
     });
   </script>
 </body>
