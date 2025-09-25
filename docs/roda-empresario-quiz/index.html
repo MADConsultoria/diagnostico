@@ -14,7 +14,7 @@
 </head>
 <body>
   <header>
-    <img id="mad-logo" src="" alt="MAD Consultoria (adicione o seu logo)" />
+    <img id="mad-logo" src="./assets/images/logo.png" alt="MAD Consultoria" />
     <div>
       <h1 class="brand">MAD Consultoria</h1>
       <div class="id-line">Roda do Empresário — Diagnóstico</div>
@@ -55,6 +55,7 @@
       <div class="nav" style="margin-top:12px;">
         <button id="btn-download" class="primary" type="button">Baixar PDF</button>
         <button id="btn-print" class="ghost" type="button">Imprimir / Salvar em PDF</button>
+        <button id="btn-whatsapp" class="whatsapp-btn" type="button">Agende sua devolutiva</button>
       </div>
 
       <div class="card" style="margin-top:12px;">
@@ -174,9 +175,9 @@
             label: 'Pontuação',
             data,
             fill: true,
-            backgroundColor: 'rgba(11,91,75,0.10)',
-            borderColor: 'rgba(11,91,75,0.95)',
-            pointBackgroundColor: 'rgba(11,91,75,1)',
+            backgroundColor: 'rgba(214,170,66,0.10)',
+            borderColor: 'rgba(214,170,66,0.95)',
+            pointBackgroundColor: 'rgba(214,170,66,1)',
             pointBorderColor: '#fff',
             pointRadius: 4,
             pointHoverRadius: 6
@@ -189,9 +190,9 @@
             legend: { display: false },
             tooltip: { enabled: true },
             datalabels: {
-              color: '#0B5B4B',
+              color: '#d6aa42',
               backgroundColor: '#ffffff',
-              borderColor: '#0B5B4B',
+              borderColor: '#d6aa42',
               borderWidth: 1,
               borderRadius: 8,
               padding: {left:6,right:6,top:2,bottom:2},
@@ -210,7 +211,7 @@
               ticks: { stepSize: 1, backdropColor: '#ffffff', color: '#374151' },
               grid: { color: '#e5e7eb' },
               angleLines: { color: '#e5e7eb' },
-              pointLabels: { color: '#0B5B4B', font: { weight: 700 } }
+              pointLabels: { color: '#d6aa42', font: { weight: 700 } }
             }
           },
           elements: { line: { borderWidth: 2 } }
@@ -261,6 +262,7 @@
 
     document.getElementById('btn-download').addEventListener('click', downloadPDF);
     document.getElementById('btn-print').addEventListener('click', ()=>window.print());
+    document.getElementById('btn-whatsapp').addEventListener('click', ()=>window.open('https://wa.me/5511989904848', '_blank'));
 
     // ====== Init ======
     document.addEventListener('DOMContentLoaded', () => {

@@ -1,5 +1,5 @@
 :root {
-  --mad-primary:#0B5B4B;
+  --mad-primary:#d6aa42;
   --mad-accent:#39C2AA;
   --text:#111827;
   --muted:#6b7280;
@@ -121,7 +121,8 @@ main {
   cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  text-align: center;
   transition: all 0.2s ease;
   background: #fff;
 }
@@ -167,9 +168,9 @@ button.primary {
 }
 
 button.primary:hover {
-  background: #094a3e;
+  background: #b8942a;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(11, 91, 75, 0.3);
+  box-shadow: 0 4px 12px rgba(214, 170, 66, 0.3);
 }
 
 button.ghost {
@@ -186,6 +187,18 @@ button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
   transform: none !important;
+}
+
+button.whatsapp-btn {
+  background: #25D366;
+  border-color: #25D366;
+  color: #fff;
+}
+
+button.whatsapp-btn:hover {
+  background: #1da851;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
 }
 
 /* Utility Classes */
@@ -254,4 +267,9 @@ canvas {
   button {
     width: 100%;
   }
+}
+#mad-logo {
+  height: 200px;
+  width: auto;
+  object-fit: contain;
 }
